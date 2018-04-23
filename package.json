@@ -1,0 +1,15 @@
+{
+  "name": "contact-form",
+  "version": "1.0.0",
+  "description": "Contact form with nodeJS, ReactJS and MongoDB",
+  "main": "app.js",
+  "scripts": {
+  },
+  "author": "Winston",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "mongoose": "^5.0.15"
+  }
+}
