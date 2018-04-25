@@ -1,0 +1,17 @@
+button{
+  outline: none;
+  transition: background 0.3s ease;
+  border: none;
+  border-radius: 5px;
+  background: steelblue;
+  color: #fff;
+  font-size: 18px;
+  padding: 15px 61px;
+  cursor: pointer;
+  box-shadow: 1px 1px 30px -6px #222;
+}
+
+button:hover{
+  background: linear-gradient(to right, #d95d5d, steelblue);
+  color: #fff;
+}

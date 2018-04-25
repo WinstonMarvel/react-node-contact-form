@@ -1,28 +1,61 @@
 .App {
-  text-align: center;
+    text-align: center;
+    padding: 2% 3% 4%;
+    position: relative;
+    z-index: 2;
+    max-width: 350px;
+    margin: 5% auto;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: -2px 3px 16px 10px rgba(0,0,0,0.3);
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+
+.submission{
+  text-align: left;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+
+h2{
+  font-size: 28px;
+  color: #1b1d1e;
+  }
+
+.input-group{
+  display: block;
+  text-align: left;
+  margin: 24px 0;;;
+  font-size: 18px;
 }
 
-.App-title {
-  font-size: 1.5em;
+.input-group label{
+  display: block;
+  font-weight: 700;
+  color: #434343;;
 }
 
-.App-intro {
-  font-size: large;
+.input-group input{
+  display: block;
+  width: 100%;
+  border-radius: 4px;
+  outline: none;
+  box-shadow: none;
+  border: 1px solid rgba(0,0,0,0.3);
+  height: 1.7em;
+  margin: 5px 0;;;;;;;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.input-group select{
+  border-radius: 3px;
+  height: 2em;
+  margin: 5px 0;;
+}
+
+.select-group input{
+  display: initial;
+  width: initial;
+  vertical-align: middle;
+  margin: 0 2%;;;;
+  vertical-align: middle;
+  margin: 0 2%;
 }
