@@ -15,8 +15,15 @@ class App extends Component {
     }
   }
   handleClick(){
-    fetch("/api/")
-    .then((res) => {return res.json()})
+    const request = new Request("/api/",{
+        method: "POST",
+        headers: new Headers({
+            'Content-type' : 'application/json'
+        }),
+        body: JSON.stringify({name: "ilybk", gender: true, phone: 3242432, email : "sj@sinds.com", message: "sdfsd"})
+    });
+    fetch(request)
+    .then((res) => res.json())
     .then(data => console.log(data));
   }
   render() {
@@ -34,14 +41,14 @@ class App extends Component {
                 </div>
                  <div className="input-group select-group">
                     <label htmlFor="gender">Gender</label>
-                    <input name="gender" type="radio"  value="male"/> Male 
-                    <input name="gender" type="radio"  value="female"/> Female <br/>
+                    <input name="gender" type="radio"  value="true"/> Male 
+                    <input name="gender" type="radio"  value="false"/> Female <br/>
                 </div>
                  <div className="input-group">
                     <label htmlFor="phone">Phone</label>
                     <input id="phone" type="text"/>
                 </div>
-                <Button name="Submit">Submit</Button>
+                <Button onClick={this.handleClick}>Submit</Button>
             </form>
         </div>
     );
