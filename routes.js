@@ -31,9 +31,17 @@ router.route("/api/")
 .post((req,res)=>{
 	console.info(req.body);
 	submission.create(req.body, (err)=> {
-		if(err)
-			throw err;
-		res.json({sucess: true});
+		try{
+			if(err){
+				console.log("ERROR");
+				throw err;
+			}
+			res.json({sucess: true});
+		}
+		catch(error){
+			console.error("Error in contact form");
+			res.json({sucess: false});
+		}
 	});
 })
 

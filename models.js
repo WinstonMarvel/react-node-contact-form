@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 var formSubmissionSchema = new Schema({
 	name : String,
-	gender: Boolean,
+	gender: String,
 	phone: Number,
 	email: String,
 	message: String

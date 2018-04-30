@@ -8,19 +8,45 @@ class App extends Component {
     super(props);
     this.state ={
       submission : {
-        name: "Winston",
-        gender: true,
-        message: "test"
+          name: "",
+          email: "",
+          gender: "",
         }
     }
+    this.onChange = this.onChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
+
+  onChange(e){
+    var element = e.target;
+    console.log(this.props);
+    // var gender = this.State.submission.gender;
+    if(element.name === "gender"){
+      console.log("works");
+        this.setState( prevState => ({
+         submission:{
+          ...prevState.submission,
+          gender: element.value
+        }
+        })); 
+    }
+    else{
+      this.setState( prevState => ({
+        submission:{
+          ...prevState.submission,
+          [element.id] : element.value,
+        }
+      }));
+    }
+  }
+
   handleClick(){
     const request = new Request("/api/",{
         method: "POST",
         headers: new Headers({
             'Content-type' : 'application/json'
         }),
-        body: JSON.stringify({name: "ilybk", gender: true, phone: 3242432, email : "sj@sinds.com", message: "sdfsd"})
+        body: JSON.stringify(this.state.submission)
     });
     fetch(request)
     .then((res) => res.json())
@@ -33,20 +59,20 @@ class App extends Component {
                 <h2>Sign up</h2>
                 <div className="input-group">
                     <label htmlFor="name">Name</label>
-                    <input id="name" type="text"/>
+                    <input id="name" type="text" onChange={this.onChange} value={this.state.submission.name}/>
                 </div>
                  <div className="input-group">
                     <label htmlFor="email">Email</label>
-                    <input id="email" type="email"/>
+                    <input id="email" type="email" onChange={this.onChange} value={this.state.submission.email} />
                 </div>
                  <div className="input-group select-group">
                     <label htmlFor="gender">Gender</label>
-                    <input name="gender" type="radio"  value="true"/> Male 
-                    <input name="gender" type="radio"  value="false"/> Female <br/>
+                    <input name="gender" type="radio"  value="Male" onChange={this.onChange} /> Male 
+                    <input name="gender" type="radio"  value="Female" onChange={this.onChange} /> Female <br/>
                 </div>
                  <div className="input-group">
                     <label htmlFor="phone">Phone</label>
-                    <input id="phone" type="text"/>
+                    <input id="phone" type="tel" onChange={this.onChange} />
                 </div>
                 <Button onClick={this.handleClick}>Submit</Button>
             </form>
