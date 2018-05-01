@@ -11,7 +11,8 @@ class App extends Component {
           name: "",
           email: "",
           gender: "",
-        }
+        },
+        is_submitted: 0 // 0- not submitted, 1 is submitted, 2- error
     }
     this.onChange = this.onChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -50,34 +51,76 @@ class App extends Component {
     });
     fetch(request)
     .then((res) => res.json())
-    .then(data => console.log(data));
+    .then((data) => { 
+      if(data.success === true)
+          this.setState({is_submitted:1});
+    })
+    .catch((err)=> {
+      console.log(err); this.setState({is_submitted:2});
+    });
   }
-  render() {
-    return (
-        <div className="App">
-            <form>
-                <h2>Sign up</h2>
-                <div className="input-group">
-                    <label htmlFor="name">Name</label>
-                    <input id="name" type="text" onChange={this.onChange} value={this.state.submission.name}/>
-                </div>
-                 <div className="input-group">
-                    <label htmlFor="email">Email</label>
-                    <input id="email" type="email" onChange={this.onChange} value={this.state.submission.email} />
-                </div>
-                 <div className="input-group select-group">
-                    <label htmlFor="gender">Gender</label>
-                    <input name="gender" type="radio"  value="Male" onChange={this.onChange} /> Male 
-                    <input name="gender" type="radio"  value="Female" onChange={this.onChange} /> Female <br/>
-                </div>
-                 <div className="input-group">
-                    <label htmlFor="phone">Phone</label>
-                    <input id="phone" type="tel" onChange={this.onChange} />
-                </div>
-                <Button onClick={this.handleClick}>Submit</Button>
-            </form>
+
+  renderForm(){
+    return(
+      <div>
+        <h2>Sign up</h2>
+        <div className="input-group">
+            <label htmlFor="name">Name</label>
+            <input id="name" type="text" onChange={this.onChange} value={this.state.submission.name}/>
         </div>
+         <div className="input-group">
+            <label htmlFor="email">Email</label>
+            <input id="email" type="email" onChange={this.onChange} value={this.state.submission.email} />
+        </div>
+         <div className="input-group select-group">
+            <label htmlFor="gender">Gender</label>
+            <input name="gender" type="radio"  value="Male" onChange={this.onChange} /> Male 
+            <input name="gender" type="radio"  value="Female" onChange={this.onChange} /> Female <br/>
+        </div>
+         <div className="input-group">
+            <label htmlFor="phone">Phone</label>
+            <input id="phone" type="tel" onChange={this.onChange} />
+        </div>
+        <Button onClick={this.handleClick}>Submit</Button>
+       </div> 
     );
+  }
+
+  renderSuccess(){
+    return (<h2 class="success">Success</h2>);
+  }
+  
+  renderError(){
+    return (<h2 class="error">Error</h2>);
+  }
+
+
+  render() {
+    if(this.state.is_submitted === 0)
+      return (
+          <div className="App">
+              <form>
+                {this.renderForm()}
+              </form>
+          </div>
+      );
+    else if(this.state.is_submitted === 1)
+      return (
+          <div className="App">
+              <form>
+                {this.renderSuccess()}
+              </form>
+          </div>
+      );
+    else{
+      return( 
+         <div className="App">
+              <form>
+                {this.renderError() }
+              </form>
+         </div>
+      );
+    }
   }
 }
 

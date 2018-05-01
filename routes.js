@@ -36,11 +36,11 @@ router.route("/api/")
 				console.log("ERROR");
 				throw err;
 			}
-			res.json({sucess: true});
+			res.json({success: true});
 		}
 		catch(error){
 			console.error("Error in contact form");
-			res.json({sucess: false});
+			res.json({success: false});
 		}
 	});
 })
